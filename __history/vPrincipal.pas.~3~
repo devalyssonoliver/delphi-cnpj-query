@@ -1,0 +1,45 @@
+unit vPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Data.Bind.Components, Data.Bind.ObjectScope, Vcl.ComCtrls, Vcl.StdCtrls,
+  Vcl.Mask, Vcl.ExtCtrls, System.RegularExpressions, uCNPJApiClient;
+
+type
+  TfrmPrincipal = class(TForm)
+    pnlTopo: TPanel;
+    pnlMeio: TPanel;
+    pnlCampos: TPanel;
+    medtCNPJ: TMaskEdit;
+    lblCNPJTitle: TLabel;
+    btnConsultar: TButton;
+    mmoCONSULTA: TMemo;
+    pbConsulta: TProgressBar;
+    procedure btnConsultarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPrincipal: TfrmPrincipal;
+
+implementation
+
+
+
+{$R *.dfm}
+
+procedure TfrmPrincipal.btnConsultarClick(Sender: TObject);
+var
+  lCNPJ : String;
+begin
+    lCNPJ := TRegEx.Replace(medtCNPJ.Text, '\D', '');
+
+end;
+
+end.

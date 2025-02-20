@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2025/02/19 20:13:13.000.921,=C:\Users\deval\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/02/19 20:14:34.000.059,C:\Users\deval\Documents\ConsultarCNPJ\vPrincipal.pas=C:\Users\deval\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/02/19 20:14:34.000.060,C:\Users\deval\Documents\ConsultarCNPJ\vPrincipal.dfm=C:\Users\deval\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2025/02/19 20:15:13.000.078,C:\Users\deval\Documents\ConsultarCNPJ\Project\inquiry.dproj=C:\Users\deval\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2025/02/19 20:15:36.000.126,=C:\Users\deval\Documents\ConsultarCNPJ\Project\Unit1.pas</Transaction>
+    <Transaction>2025/02/19 21:13:58.000.275,C:\Users\deval\Documents\ConsultarCNPJ\Units\uCNPJApiClient.pas=C:\Users\deval\Documents\ConsultarCNPJ\Project\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

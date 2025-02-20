@@ -1,0 +1,35 @@
+unit uCNPJApiClient;
+
+interface
+
+uses
+  REST.Client, System.SysUtils, REST.Types;
+type TCNPJApiClient = class
+  private
+    FRestClient : TRESTClient;
+    FRestRequest : TRESTRequest;
+    FRestResponse : TRESTResponse;
+  public
+    function Requisicao(ACNPJ, AResposta : String): Boolean;
+end;
+const CNPJ_API_URL = 'https://receitaws.com.br/v1/cnpj/%s';
+
+implementation
+
+{ TCNPJApiClient }
+
+function TCNPJApiClient.Requisicao(ACNPJ, AResposta: String): Boolean;
+begin
+  Result := False;
+  FRestClient.BaseUrl := Format(CNPJ_API_URL, [ACNPJ]);
+  FRestRequest.Method := rmGET;
+  try
+  FRestRequest.Execute;
+  Result := True;
+  AResposta := FRestResponse.Content;
+  except
+  Result := False;
+  end;
+end;
+
+end.
