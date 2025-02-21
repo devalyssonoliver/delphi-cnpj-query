@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.Bind.Components, Data.Bind.ObjectScope,
-  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls, System.RegularExpressions, uCNPJApiClient;
+  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls, System.RegularExpressions, uCNPJApiClient, uCNPJDataFiller;
 
 type
   TfrmPrincipal = class(TForm)
@@ -17,13 +17,26 @@ type
     btnConsultar: TButton;
     pbConsulta: TProgressBar;
     edtNome: TEdit;
-    edtCNPJ: TEdit;
-    edtSituacao: TEdit;
-    Panel1: TPanel;
-    ProgressBar1: TProgressBar;
-    Edit1: TEdit;
-    Edit2: TEdit;
+    edtCnpj_raiz: TEdit;
     edtCEP: TEdit;
+    edtSituacao: TEdit;
+    edtCapital_social: TEdit;
+    edtResponsavel_federativo: TEdit;
+    edtPorte: TEdit;
+    edtNatureza_juridica: TEdit;
+    edtQualificacao_do_responsavel: TEdit;
+    mmoLog: TMemo;
+    Nome: TLabel;
+    CNPJ: TLabel;
+    CEP: TLabel;
+    lblSituação: TLabel;
+    CapitalSocial: TLabel;
+    Respfederativo: TLabel;
+    lPorte: TLabel;
+    NatJuridica: TLabel;
+    lblQualiRespons: TLabel;
+    lblLOGS: TLabel;
+    btnGerarCSV: TButton;
     procedure btnConsultarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -78,8 +91,6 @@ begin
           procedure
           begin
             pbConsulta.Position := 100;
-           // mmoCONSULTA.Lines.Clear;
-            //mmoCONSULTA.Lines.Add(lResposta);
             PreencherValoresEdit;
           end);
       except
@@ -119,14 +130,24 @@ end;
 
 procedure TfrmPrincipal.PreencherValoresEdit;
 var
- jsValues : TJsonObject;
+  jsValues: TJSONObject;
+  DataFiller: TCNPJDataFiller;
 begin
-  //testes
-  jsvalues := FApiCliente.RestRequest.Response.JSONValue as TJsonObject;
-   edtNome.Text := jsValues.Values['fantasia'].ToString;
-   edtSituacao.Text := jsValues.Values['situacao'].ToString;
-   edtCEP.Text := jsValues.Values['cep'].ToString;
-   edtCNPJ.Text := jsvalues.values['cnpj'].ToString;
+  jsValues := FApiCliente.RestRequest.Response.JSONValue as TJSONObject;
+
+  if Assigned(jsValues) then
+  begin
+    DataFiller := TCNPJDataFiller.Create(jsValues);
+    try
+      DataFiller.PreencherCampos(
+        edtNome, edtSituacao, edtCEP, edtCnpj_raiz, edtCapital_social,
+        edtResponsavel_federativo, edtPorte, edtNatureza_juridica,
+        edtQualificacao_do_responsavel, mmoLog
+      );
+    finally
+      DataFiller.Free;
+    end;
+  end;
 end;
 
 procedure TfrmPrincipal.btnConsultarClick(Sender: TObject);

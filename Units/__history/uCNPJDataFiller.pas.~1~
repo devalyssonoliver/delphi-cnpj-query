@@ -1,0 +1,41 @@
+unit uCNPJDataFiller;
+
+interface
+
+uses
+  System.JSON, Vcl.StdCtrls;
+
+type
+  TCNPJDataFiller = class
+  private
+    FJsonData: TJSONObject;
+  public
+    constructor Create(AJsonData: TJSONObject);
+    procedure PreencherCampos(
+      AEdtNome, AEdtSituacao, AEdtCEP, AEdtCnpjRaiz: TEdit
+    );
+  end;
+
+implementation
+
+{ TCNPJDataFiller }
+
+constructor TCNPJDataFiller.Create(AJsonData: TJSONObject);
+begin
+  FJsonData := AJsonData;
+end;
+
+procedure TCNPJDataFiller.PreencherCampos(
+  AEdtNome, AEdtSituacao, AEdtCEP, AEdtCnpjRaiz: TEdit);
+begin
+  if Assigned(FJsonData) then
+  begin
+    AEdtNome.Text := FJsonData.GetValue<string>('fantasia', '');
+    AEdtSituacao.Text := FJsonData.GetValue<string>('situacao', '');
+    AEdtCEP.Text := FJsonData.GetValue<string>('cep', '');
+    AEdtCnpjRaiz.Text := FJsonData.GetValue<string>('cnpj', '');
+  end;
+end;
+
+end.
+
