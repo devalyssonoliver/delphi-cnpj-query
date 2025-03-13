@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.Bind.Components, Data.Bind.ObjectScope,
-  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls, System.RegularExpressions, uCNPJApiClient, uCNPJDataFiller;
+  Vcl.ComCtrls, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls, System.RegularExpressions, uCNPJApiClient, uCNPJDataFiller,
+  System.ImageList, Vcl.ImgList, Vcl.Buttons;
 
 type
   TfrmPrincipal = class(TForm)
@@ -14,7 +15,6 @@ type
     pnlCampos: TPanel;
     medtCNPJ: TMaskEdit;
     lblCNPJTitle: TLabel;
-    btnConsultar: TButton;
     pbConsulta: TProgressBar;
     edtNome: TEdit;
     edtCnpj_raiz: TEdit;
@@ -36,7 +36,8 @@ type
     NatJuridica: TLabel;
     lblQualiRespons: TLabel;
     lblLOGS: TLabel;
-    btnGerarCSV: TButton;
+    btnConsultar: TBitBtn;
+    illist: TImageList;
     procedure btnConsultarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -152,7 +153,7 @@ end;
 
 procedure TfrmPrincipal.btnConsultarClick(Sender: TObject);
 begin
-    CarregarDadosCNPJ;
+  CarregarDadosCNPJ;
 end;
 
 end.
